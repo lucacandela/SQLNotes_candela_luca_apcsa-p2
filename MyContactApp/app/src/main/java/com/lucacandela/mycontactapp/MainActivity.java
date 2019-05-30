@@ -42,6 +42,13 @@ public class MainActivity extends AppCompatActivity {
         String name = editName.getText().toString();
         String phone = editNum.getText().toString();
         String address = editAddress.getText().toString();
+        if (name == null)
+            name = "";
+        if (phone == null)
+            phone = "";
+        if (address == null)
+            address = "";
+
         boolean isInserted = myDb.insertData(name,phone,address);
 
         if (isInserted){
@@ -94,11 +101,24 @@ public class MainActivity extends AppCompatActivity {
         String out ="";
 
         String[] entry = s.split(";");
-        String[] mod = new String[entry.length];
-        mod[0] = "ID: " + entry[0];
-        mod[1] = "Contact: " + entry[1];
-        mod[2] = "Phone number: " + entry[2];
-        mod[3] = "Address: " + entry[3];
+
+        List<String> mod = new ArrayList<String>();
+        if (entry[0] != null)
+            mod.add( "ID: " + entry[0]);
+        else
+            mod.add("ID: ");
+        if(entry[1] != null)
+            mod.add( "Contact: " + entry[1]);
+        else
+            mod.add("Contact: ");
+        if (entry[2] != null)
+            mod.add( "Phone number: " + entry[2]);
+        if(entry[3] != null){
+
+            mod.add( "Address: " + entry[3]);
+        }
+        else
+            mod.add("Address: ");
 
         for (String x : mod){
             out+= x + "\n";
@@ -152,7 +172,9 @@ public class MainActivity extends AppCompatActivity {
             String[] col = c.split(";");
             count = 0;
             for (String  s : col){
-
+                if (s==null){
+                    col[count] = "";
+                }
                 col[count]=s.toLowerCase();
                 count++;
                 Log.d("MyContactApp",s);
