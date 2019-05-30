@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="32dp"
         android:text="Name"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="32dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintStart_toEndOf="@+id/textView"
@@ -32,8 +32,8 @@
         android:id="@+id/addContactButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="72dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginBottom="120dp"
         android:onClick="addData"
         android:text="Add Contact"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -64,11 +64,12 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="44dp"
         android:text="Address"
         android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        tools:layout_editor_absoluteX="32dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
         android:id="@+id/addressInput"
@@ -84,9 +85,23 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="72dp"
-        android:text="Add Phone Number"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="120dp"
+        android:onClick="viewData"
+        android:text="Contact List"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toEndOf="@+id/addContactButton" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="search"
+        android:text="@android:string/search_go"
+        tools:layout_editor_absoluteX="64dp"
+        tools:layout_editor_absoluteY="634dp" />
+
 </android.support.constraint.ConstraintLayout>
