@@ -53,6 +53,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void switchToContactScreen(View v){
+        //Change to activity_contactscreen
+    }
+
     public void viewData(View v){
 
         //Log.d("MyContactApp","MainActivity: ");
