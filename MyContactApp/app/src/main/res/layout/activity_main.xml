@@ -32,7 +32,7 @@
         android:id="@+id/addContactButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
+        android:layout_marginStart="44dp"
         android:layout_marginBottom="120dp"
         android:onClick="addData"
         android:text="Add Contact"
@@ -99,9 +99,11 @@
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginBottom="48dp"
         android:onClick="search"
         android:text="@android:string/search_go"
-        tools:layout_editor_absoluteX="64dp"
-        tools:layout_editor_absoluteY="634dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

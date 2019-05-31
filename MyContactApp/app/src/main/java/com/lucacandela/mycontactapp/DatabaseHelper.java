@@ -48,6 +48,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public boolean insertData(String name,String number,String address){
         Log.d("MyContactApp","DatabaseHelper: 1/2 Inserting data...");
+
+        if (name.equals("") && number.equals("") && address.equals("")) {
+            Log.d("MyContactApp","DatabaseHelper: contact is blank in all fields");
+            return false;
+        }
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_NAME_CONTACT,name);

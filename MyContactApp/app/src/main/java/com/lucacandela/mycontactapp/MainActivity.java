@@ -42,12 +42,6 @@ public class MainActivity extends AppCompatActivity {
         String name = editName.getText().toString();
         String phone = editNum.getText().toString();
         String address = editAddress.getText().toString();
-        if (name == null)
-            name = "";
-        if (phone == null)
-            phone = "";
-        if (address == null)
-            address = "";
 
         boolean isInserted = myDb.insertData(name,phone,address);
 
@@ -60,11 +54,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void viewData(View v){
-        Cursor res = myDb.getAllData();
+
         //Log.d("MyContactApp","MainActivity: ");
 
 
         if (getData() !=null) {
+
             String[] results = getData().toString().split("--");
 
             String result = "";
@@ -81,18 +76,21 @@ public class MainActivity extends AppCompatActivity {
     public StringBuffer getData(){
         Cursor res = myDb.getAllData();
         if(res.getCount() == 0){
+            Log.d("MyContactApp","getData(): Data is null");
             return null;
         }
 
         StringBuffer buffer = new StringBuffer();
+        Log.d("MyContactApp","getData(): getting data");
         while(res.moveToNext()){
             //append res coulmns to the buffer -- see stringbuffer and cursor API's
             buffer.append(
-                    res.getString(0) + ";" +
-                            res.getString(1) + ";" +
-                            res.getString(2) + ";" +
-                           res.getString(3) + ";--");
+                            res.getString(0) + " ;" +
+                            res.getString(1) + " ;" +
+                            res.getString(2) + " ;" +
+                            res.getString(3) + " ;--");
         }
+        Log.d("MyContactApp","getData(): data got");
         return buffer;
 
     }
@@ -150,17 +148,26 @@ public class MainActivity extends AppCompatActivity {
             address = null;
 
         if (!(name == null && phone == null && address == null))
-        searchContacts(name,phone,address);
+            searchContacts(name,phone,address);
         else
             showMessage("Search Params\nNone","No results");
     }
 
     public void searchContacts(String name, String phone, String address){
         StringBuffer rawData = getData();
+        String title = "Search Params:\n";
+        if(name!= null)     title+="Name: " + name;
+        if (phone!= null)   title+=", Phone: " + phone;
+        if (address!=null)  title+= ", Address: " + address;
+        String results = "";
+        if (rawData == null){
+            showMessage(title,"No DB found");
+            return;
+        }
         Log.d("MyContactApp","searchContacts: " + rawData.toString());
         String[] contacts = rawData.toString().split("--");
 
-        String results = "";
+
         int count = 0;
 
         if(name!=null)
@@ -240,10 +247,7 @@ public class MainActivity extends AppCompatActivity {
                 results+= formatContactEntry(r);
             }
         }
-        String title = "Search Params:\n";
-        if(name!= null)     title+="Name: " + name;
-        if (phone!= null)   title+=", Phone: " + phone;
-        if (address!=null)  title+= ", Address: " + address;
+
         if (title.equals("Search Params\n")) title += "none";
 
 
